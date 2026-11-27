@@ -1,0 +1,26 @@
+name: Build and Test Docker Image
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t flask-app .
+
+      # bonus: run container and hit /health
+      - name: Test /health endpoint
+        run: |
+          docker run -d -p 5000:5000 --name flask-test flask-app
+          sleep 3
+          curl --fail http://localhost:5000/health
+          docker stop flask-test
