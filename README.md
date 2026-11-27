@@ -18,11 +18,13 @@ curl localhost:5000/health
 {"status":"ok"}
 ```
 
-> Screenshot of curl output — see below (replace with your screenshot).
-
 ```bash
 curl localhost:5000
-# Hello from DevOps!
+```
+
+**Output:**
+```
+Hello from DevOps!
 ```
 
 ## Stop the container
